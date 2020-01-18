@@ -10,6 +10,10 @@ export default class HomeScreen extends Component {
             backgroundColor: '#333333',
         },
     }
+    
+    state = {
+        mesa: ''
+    }
 
     render() {
         const {navigate} = this.props.navigation
@@ -20,18 +24,17 @@ export default class HomeScreen extends Component {
                 </View>
 
                 <View style={styles.table}>
-                    <Picker>
+                    <Picker selectedValue={this.state.mesa} 
+                        onValueChange={(itemValue) => this.setState({mesa: itemValue})}>
                         <Picker.Item  label="Escolha a mesa" value=''/>
                         <Picker.Item label="Mesa 01" value='1'/>
                     </Picker>
                 </View>
 
                 <View style={styles.btn_comanda}>
-                    <Button title="Gerar comanda" onPress={() => navigate('About')} color="#FF7F00"/>
+                    <Button title="Gerar comanda" onPress={() => navigate('Cardapio')} color="#FF7F00"/>
                 </View>
-                
-
-                
+   
             </View>
         )
     }
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     logo_image: {
         marginTop: 30,
         width: 300,
-        height: 210
+        height: 225
     },
 
     table: {
