@@ -2,12 +2,13 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from './components/home/Home';
-import CardapioScreen from './components/cardapio/Cardapio';
+import MainScreen from './components/main/Main';
+
 
 const Routes = createAppContainer(
     createStackNavigator({
         Home: HomeScreen,
-        Cardapio: CardapioScreen
+        Cardapio: MainScreen
     })
 )
 

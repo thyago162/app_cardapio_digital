@@ -4,13 +4,24 @@ import {Card} from 'react-native-elements';
 import axios from 'axios';
 import { FlatList } from 'react-native-gesture-handler';
 
+import Destaque from '../destaque/Destaque';
+
 class Cardapio extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             refeicoes: []
         }
+    }
+
+    static navigationOptions = {
+        title: 'Bom apetite',
+        headerTintColor: 'white',
+        headerLeft: () => null,
+        headerStyle: {
+            backgroundColor: '#333333',
+        },
     }
 
     componentDidMount() {
@@ -23,22 +34,24 @@ class Cardapio extends Component {
     render() {
         return(
             <View>
-                <Text>Aqui vai ser o cardapio</Text>
                 <FlatList
                     data={this.state.refeicoes}
                     renderItem={({item}) => (
-                    <Card>
-                        <View style={styles.container}>
-                            <View style={styles.detalhes}>
-                                <Text>{item.nm_refeicao}</Text>
-                                <Text>Descrição: {item.nm_descricao}</Text>
-                                <Text>Preço: {item.nu_preco}</Text>
+                   <View>
+                        <Text>{item.nm_categoria}</Text>
+                        <Card>
+                            <View style={styles.container}>
+                                <View style={styles.detalhes}>
+                                    <Text>{item.nm_refeicao}</Text>
+                                    <Text>Descrição: {item.nm_descricao}</Text>
+                                    <Text>Preço: {item.nu_preco}</Text>
+                                </View>
+                                <View>
+                                    <Image style={{width:70, height:65}} source={{uri: 'http://192.168.0.100:8000/storage/foods/3SQn9fyFzMVty3hAhxgg2SoDgTJPyfiNker9MHqR.jpeg'}}/>
+                                </View>
                             </View>
-                            <View>
-                                <Image style={{width:70, height:65}} source={{uri: 'http://192.168.0.100:8000/storage/foods/3SQn9fyFzMVty3hAhxgg2SoDgTJPyfiNker9MHqR.jpeg'}}/>
-                            </View>
-                        </View>
-                    </Card>
+                        </Card>
+                    </View>
                     )}
                     keyExtractor={item => item.id_refeicao}
                  />
